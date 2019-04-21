@@ -7,9 +7,11 @@ RUN echo "unsafe-perm = true" >> ~/.npmrc
 # COPY package.json package-lock.json ./
 RUN cd /usr/src/api
 
-COPY . .
+COPY package.json ./
 
-RUN npm install
+RUN yarn
+
+COPY . .
 
 EXPOSE 1337
 
