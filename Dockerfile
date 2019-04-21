@@ -4,16 +4,17 @@ WORKDIR /usr/src/api
 
 RUN echo "unsafe-perm = true" >> ~/.npmrc
 
-# COPY package.json package-lock.json ./
-RUN cd /usr/src/api
+# COPY package.json ./
 
-COPY package.json ./
+# RUN cd /usr/src/api && npm install --unsafe-perm
 
-RUN yarn
+# RUN cd /usr/src/api && npm run setup
 
 COPY . .
 
-EXPOSE 1337
+RUN npm install --unsafe-perm
+
+EXPOSE 8080
 
 COPY healthcheck.js ./
 

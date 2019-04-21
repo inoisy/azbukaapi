@@ -7,3 +7,6 @@
 README.md
 docker-compose.yml
 node_modules
+admin/node_modules
+plugins/**/node_modules
+public/uploads
