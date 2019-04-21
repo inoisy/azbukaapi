@@ -1,0 +1,52 @@
+{
+  "name": "strapi-postgres",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application.",
+  "main": "./server.js",
+  "scripts": {
+    "setup": "cd admin && npm run setup",
+    "start": "node server.js",
+    "strapi": "node_modules/strapi/bin/strapi.js",
+    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
+    "postinstall": "node node_modules/strapi/lib/utils/post-install.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "dependencies": {
+    "agentkeepalive": "^4.0.2",
+    "elasticsearch": "^15.4.1",
+    "knex": "latest",
+    "lodash": "^4.17.5",
+    "pg": "7.9.0",
+    "strapi": "3.0.0-alpha.25.2",
+    "strapi-hook-bookshelf": "3.0.0-alpha.25.2",
+    "strapi-hook-knex": "3.0.0-alpha.25.2"
+  },
+  "author": {
+    "name": "dev",
+    "email": "",
+    "url": ""
+  },
+  "maintainers": [
+    {
+      "name": "dev",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "strapi": {
+    "packageManager": "npm",
+    "uuid": "2367ecd2-1375-4b8f-af74-a7dcfc06b067"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "license": "MIT"
+}

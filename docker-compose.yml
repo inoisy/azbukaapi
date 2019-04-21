@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+
+
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_CLIENT: mongo
+        DATABASE_HOST: ds135796.mlab.com
+        DATABASE_PORT: 35796
+        DATABASE_SRV: 'false'
+        DATABASE_NAME: cscpharmaen
+        DATABASE_USERNAME: cscpharma
+        DATABASE_PASSWORD: fuckoff11
+        DATABASE_SSL: 'false'
+        DATABASE_AUTHENTICATION_DATABASE: cscpharmaen
+    # image: strapi/strapi
+    command: npm run start
+    ports:
+      - 1337:1337
+    # volumes:
+    
+      # docker build --build-arg DATABASE_CLIENT='mongo' --build-arg DATABASE_HOST='ds135796.mlab.com' --build-arg DATABASE_PORT='35796' --build-arg DATABASE_SRV=false --build-arg DATABASE_NAME=cscpharmaen --build-arg DATABASE_USERNAME=cscpharma --build-arg DATABASE_PASSWORD=fuckoff11 --build-arg DATABASE_SSL=false --build-arg DATABASE_AUTHENTICATION_DATABASE=cscpharmaen
+
+      # - static-content:/usr/src/api/frontend
+    # volumes:
+      # - ./backend:/usr/src/api
+      # - /usr/src/api/node_modules/
+      #- /usr/src/api/strapi-app/node_modules
+
+    restart: always
+
+
+
+networks:
+
+  elk:
+    driver: bridge
